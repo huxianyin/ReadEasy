@@ -1,0 +1,13 @@
+Introducing human physiology into a computational cognitive architecture is important. On
+the one hand, it provide more realistic models of human to cover the physiological aspect. On
+the other hand, with modern sensing technologies, physiological signals can be measured in
+real-time and makes it possible to build cognitive models that are synchronized with a specific
+person at a specific time. These dynamic cognitive models can be used in many practical ap-
+plications concerning human well-being such as fatigue monitoring. However, computational
+cognitive architectures with a physiology module stays at a theoretical level. In this study,
+we proposed a diagram on how to build dynamic cognitive models synchronized with specific
+individuals. A cognitive model conducting N-back task based on the ACT-R cognitive architec-
+ture was designed, with its cognitive behavior moderated by bored induced fatigue. Empirical
+data of our previous work collected in a well-controlled laboratory experiment verified that
+several cognitive parameters of ACT-R can be estimated from multiple physiological features
+including heart rate, respiration and pupil diameter using.

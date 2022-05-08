@@ -3,16 +3,28 @@
 
 <head>
     <title>Read Easy!</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
+<header>
+    <div class="navbar">
+        <input id="inputfile" type="file" name="inputfile">
+        <span>
+            <select enabled id="TargetLanguage">
+                <option>Japanese</option>
+                <option>Chinese</option>
+            </select>
+        </span>
+    </div>
+    
+</header>
 <body>
-    <input type="file" name="inputfile"
-            id="inputfile">
-
-    <div id="output">
+    <div id="container" class="container">
+        <div id="output" class="textarea">Textarea</div>
+        <div id="word_info" class="widget"></div>
+        <div id="progress_bar" class="progress"></div>
     </div>
 
-    <button>Random HighLighting</button>
     <script type="text/javascript" src="js/importText.js"></script>
 
 </body>

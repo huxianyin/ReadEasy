@@ -1,13 +1,14 @@
-Introducing human physiology into a computational cognitive architecture is important. On
-the one hand, it provide more realistic models of human to cover the physiological aspect. On
-the other hand, with modern sensing technologies, physiological signals can be measured in
-real-time and makes it possible to build cognitive models that are synchronized with a specific
-person at a specific time. These dynamic cognitive models can be used in many practical ap-
-plications concerning human well-being such as fatigue monitoring. However, computational
-cognitive architectures with a physiology module stays at a theoretical level. In this study,
-we proposed a diagram on how to build dynamic cognitive models synchronized with specific
-individuals. A cognitive model conducting N-back task based on the ACT-R cognitive architec-
-ture was designed, with its cognitive behavior moderated by bored induced fatigue. Empirical
-data of our previous work collected in a well-controlled laboratory experiment verified that
-several cognitive parameters of ACT-R can be estimated from multiple physiological features
-including heart rate, respiration and pupil diameter using.
+What is International Mother Earth Day?
+It's a special celebration that brings together people from around the world to remember that planet Earth is our home and we want to live in harmony with nature. We are all responsible for protecting our planet and looking after all the species that live here. April 22 was first established by the UN as International Mother Earth Day in 2009, joining groups that had previously celebrated Earth Day on the same date. The UN website explains that the idea of 'Mother Earth' is used because it 'reflects the interdependence that exists among human beings, other living species and the planet we all inhabit'.
+
+Why is it important? 
+On this day, environmental organisations from all over the world come together to highlight the urgent need to protect the many ecosystems that make up our environment. These ecosystems are under attack from climate change and the natural disasters caused by rising temperatures: forest fires, floods and terrible storms. More than a million animal and plant species are in danger of extinction through loss of habitat, mainly due to human activity. This, in turn, is leading to outbreaks of deadly diseases that spread from wildlife to humans. On International Mother Earth Day, environmentalists call for action to reverse this damage.   
+
+How did it start? 
+The first Earth Day was celebrated in 1970 in the USA after a decade of local protests about air and water pollution in the United States. In 1969, people were angry about a terrible oil spill in Santa Barbara, California, and the damage it caused. US Senator Gaylord Nelson called for a national 'teach-in', bringing together students and teachers to discuss key issues of pollution and conservation. 
+
+On 22 April 1970, 20 million people, approximately ten per cent of the total population of the States at the time, joined the 'teach-in' and met in streets, parks and universities across the land to call for a healthy, clean, sustainable environment. Some people think of that day as the birth of the modern environmental movement.
+
+Twenty years later, in 1990, Earth Day went global. More than 200 million people in 141 countries came together to call for environmental issues to be discussed on the world stage. In 1995, Senator Nelson was given an award for his work for the environment. 
+
+Today more than one billion people all over the world come together each year to celebrate International Mother Earth Day and remind politicians that action needs to be taken to move towards a more sustainable way of life that works for both people and the planet.  

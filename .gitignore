@@ -2,4 +2,5 @@
 __pycache__
 data/*
 
+auth_key.txt
 .DS_Store

@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+html {
+  scroll-behavior: smooth;
+}
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
+
+textarea {
+    height: 8rem !important;
+}
+
+header {
+  background-color: #f2a640;
+  padding: 1rem 0;
+ position: fixed;
+ width: 100%;
+ height: 10%;
+ z-index: 1;
+}
+
+.container{
+  position: relative;
+  z-index:0;
+  padding-top: 11%;
+  padding-left: 5%;
+}
+
+.textarea{
+  position: absolute;
+  top: 200px;
+  font-size: 25px;
+}
+
+.widget{
+  position: absolute;
+  background-color:rgba(252, 232, 6, 0.9);
+  border: solid 2px #555;
+  font-size: 20px;
+  
+}
+
+.widget p{
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* solid underline */
+.underline-01 {
+  -webkit-text-decoration: underline solid #413832;
+  text-decoration: underline solid #413832;
+}
+/* double underline */
+.underline-02 {
+  -webkit-text-decoration: underline double #b373B3;
+  text-decoration: underline double #b373B3;
+}
+/* dotted underline */
+.underline-03 {
+  -webkit-text-decoration: underline dotted #59bfb3;
+  text-decoration: underline dotted #59bfb3;
+}
+/* dashed underline */
+.underline-04 {
+  -webkit-text-decoration: underline dashed #f2a640;
+  text-decoration: underline dashed #f2a640;
+}
+/* wavy underline */
+.underline-05 {
+  -webkit-text-decoration: underline wavy #22a4be;
+  text-decoration: underline wavy #22a4be;
+}
+/* gradient underline */
+.underline-06 {
+  background-image: linear-gradient(90deg, #e67399, #f2a640);
+  background-position: bottom;
+  background-size: 100% 30%;
+  background-repeat: no-repeat;
+}
+

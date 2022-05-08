@@ -1,5 +1,8 @@
 ## Read Easy 👁‍🗨
-![](https://github.com/huxianyin/ReadEasy/resources/demo.gif)
+
+https://user-images.githubusercontent.com/34026599/167301771-bd13521b-2746-4fb8-b08c-0d1fb2bffa60.mp4
+
+
 
 ## Objective
 - Make reading essays and papers that written in foreign languages more easily

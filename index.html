@@ -8,19 +8,17 @@
 
 <header>
     <div class="navbar">
-        <input id="inputfile" type="file" name="inputfile">
-        <span>
-            <select enabled id="TargetLanguage">
-                <option>Japanese</option>
-                <option>Chinese</option>
-            </select>
-        </span>
+        <span class="label">Material:</span> <input id="inputfile" type="file" name="inputfile" class="file">
+        <span class="label">Target Language:</span><select enabled id="TargetLanguage" class="classic">
+            <option>Japanese</option>
+            <option>Chinese</option>
+        </select>
     </div>
     
 </header>
 <body>
     <div id="container" class="container">
-        <div id="output" class="textarea">Textarea</div>
+        <div id="output" class="textarea"></div>
         <div id="word_info" class="widget"></div>
         <div id="progress_bar" class="progress">
         </div>

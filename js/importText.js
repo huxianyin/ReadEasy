@@ -91,7 +91,7 @@ function check_gaze_word(){
         focused_duration+=update_rate;
         var percentage = focused_duration/interval;
         if(curr_word!=null && curr_word.id.includes("word"))
-        {   console.log(curr_word.offsetWidth)
+        {   //console.log(curr_word.offsetWidth)
             ShowProgressBar(percentage,
             curr_word.offsetWidth);
         }

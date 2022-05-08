@@ -17,7 +17,7 @@ const update_rate = 100;
 var focused_duration=0;
 
 window.addEventListener('DOMContentLoaded', function(){
-    fetch('auth_key.txt') // (1) リクエスト送信
+    fetch('resources/auth_key.txt') // (1) リクエスト送信
     .then(response => response.text()) // (2) レスポンスデータを取得
     .then(data => { // (3)レスポンスデータを処理
         auth_key=data;

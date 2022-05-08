@@ -35,12 +35,16 @@ header {
   font-size: 25px;
 }
 
+#progress_bar{
+  position: absolute;
+}
+
 .widget{
   position: absolute;
   background-color:rgba(252, 232, 6, 0.9);
   border: solid 2px #555;
   font-size: 20px;
-  
+
 }
 
 .widget p{
@@ -81,5 +85,16 @@ header {
   background-position: bottom;
   background-size: 100% 30%;
   background-repeat: no-repeat;
+}
+
+
+
+
+
+.progress {
+  height: 10px;
+  background: rgb(15, 255, 2);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
 }
 

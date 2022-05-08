@@ -12,7 +12,7 @@ const language_code={
 const api_url="https://api-free.deepl.com/v2/translate";
 var auth_key;
 
-const interval = 5*1000;
+const interval = 3*1000;
 const update_rate = 100;
 var focused_duration=0;
 
@@ -89,6 +89,12 @@ function check_gaze_word(){
     if(curr_word==last_word)
     {
         focused_duration+=update_rate;
+        var percentage = focused_duration/interval;
+        if(curr_word!=null && curr_word.id.includes("word"))
+        {   console.log(curr_word.offsetWidth)
+            ShowProgressBar(percentage,
+            curr_word.offsetWidth);
+        }
     }
     else
     {
@@ -99,6 +105,8 @@ function check_gaze_word(){
         }
         if(last_word!=null){last_word.style.cssText='';}
         HideWidet();
+        HideProgressBar();
+        
     }
     if(focused_duration>interval) Translate();
     
@@ -132,6 +140,23 @@ function Translate(){
 }
 
 
+function ShowProgressBar(percentage,word_width){
+    var progress = document.getElementById('progress_bar');
+    //console.log()
+    var word_pos = getScreenPos(curr_word);
+    progress.style.top = getY(word_pos.top,progress).toString()+'px';
+    progress.style.left = (getX(word_pos.left,progress)+curr_word.offsetWidth).toString()+'px';
+    if(percentage<1)
+        progress.style.width=percentage*word_width.toString()+'px';
+    else progress.style.width='0px';
+
+}
+
+function HideProgressBar()
+{
+    var progress = document.getElementById('progress_bar')
+    progress.style.width='0px';
+}
 
 function ShowWidget(info)
 {
@@ -180,6 +205,14 @@ function getX(x, oElement )
     return iReturnValue-widget_offset_x;
 }
 
+function getScreenPos(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+      left: rect.left + window.scrollX,
+      top: rect.top + window.scrollY
+    };
+  }
+  
 
 function readTextFile(file)
 {

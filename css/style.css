@@ -18,22 +18,53 @@ header {
   padding: 1rem 1rem;
  position: fixed;
  width: 100%;
- height: 8%;
+ height: 15%;
  z-index: 1;
  align-items: center;
+}
+
+.navbar{
+  padding-top: 20px;
+}
+
+footer{
+  position:fixed;
+  bottom:0;
+  background-color:#f2a640;
+  margin:0;
+  padding:0;
+  width:100%;
+  height:50px;
+  }
+
+.marker{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top:0vh;
+}
+
+.marker.left{
+  left:0vw;
+}
+.marker.mid{
+  left:calc(50vw - 25px);
+}
+.marker.right{
+  left:calc(100vw - 50px);
 }
 
 .container{
   position: relative;
   z-index:0;
-  padding-top: 11%;
   padding-left: 5%;
 }
 
 .textarea{
   position: absolute;
-  top: 150px;
+  top: 180px;
   font-size: 25px;
+  padding-bottom: 100px;
 }
 
 #progress_bar{

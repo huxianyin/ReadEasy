@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/g3common.css">
+    <title>Live</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="box">
+            <h1>Live</h1>
+            <div class="scene" id="playbin">
+                <div class="header">
+                    &nbsp;<span id="mediainfo">-</span>
+                    <button onclick="fullscreen()" class="right aslink">
+                            &#8597;
+                        </button>
+                </div>
+                <div class="live">
+                    <span id="recovl" class="recording overlay">TEST</span>
+                    <img id="overlay" title="Gaze" class="overlay" src="resources/marker.png">
+                    <video id="scene" title="Scene" poster="resources/g3.png"></video>
+                </div>
+                <div class="footer">
+                    <button title="Start/Stop Live" id="play">&#9654;</button>
+                    <button title="Calibrate" id="calib">&#8857;</button>
+                    <!-- <button title="Start/Stop Record" id="recbtn">&#9899;</button> -->
+
+                </div>
+            </div>
+            <div class="scene">
+                <div class="live">
+                    <video id="eyes" class="hide" title="Eyes"></video>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <th>Settings</th>
+                    <th>Gaze</th>
+                    <th>Sync Port</th>
+                    <th>IMU</th>
+                    <th>Events</th>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="gazeoverlay" title="Controls if a gaze overlay should be rendered from the live gaze stream.">Gaze overlay</label>
+                        <select name="gazeoverlay" id="gazeoverlay">
+                                <option value="always">Always</option>
+                                <option value="default" selected>Default</option>
+                                <option value="never">Never</option>
+                            </select>
+                        <br>
+                        <input id="useeyes" type="checkbox" name="Use Eyes" autocomplete="off"></input>
+                        <label for="useeyes"> Show eye cameras</label>
+                        <br>
+                        <input id="uselocalip" type="checkbox" name="Local IP" autocomplete="off"></input>
+                        <label for="uselocalip" title="Resolve ZeroConf .local domains in JavaScript. This works around an issue where mDNS requests are not resolved on Local networks."> Resolve .local</label>
+                        <br>
+                        <input id="usestun" type="checkbox" name="usestun" autocomplete="off"></input>
+                        <label for="usestun"> Use <a target="_blank" href="https://github.com/pradt2/always-online-stun">STUN</a></label>
+                        <input id="stun" name="stun" title="Set the address of your STUN-server including port on the format 'address:port'. Use the link to the left to get a list of public STUN servers.">
+                    </td>
+                    <td>
+                        <pre id="gazedata"></pre>
+                    </td>
+                    <td>
+                        <span id="syncin" class="syncport">-</span><br>
+                        <span id="syncout" class="syncport">-</span>
+                    </td>
+                    <td id="imudata"></td>
+                    <td class="flex">
+                        <div class="log logwithsend" id="eventslog"></div>
+                        <input id="eventmsg" type="text"></input>
+                        <button id="eventsend" title="Send">&#10162;</button>
+                    </td>
+                </tr>
+            </table>
+            <div id="logdiv"></div>
+        </div>
+    </div>
+    <script src="js/g3common.js"></script>
+    <script src="js/g3obj.js"></script>
+    <script src="js/webrtc.js"></script>
+    <script>
+        function syncport(ts, msg) {
+            var el = (msg.direction == "out") ? syncout : syncin;
+            el.innerHTML = msg.direction + " " + ts.toFixed(2);
+            if (msg.value == 0)
+                el.classList.remove("syncon");
+            else
+                el.classList.add("syncon");
+        }
+
+        function gaze(ts, msg, type) {
+            var txt = "Time: " + ts.toFixed(3) + " (" + type + ")\n";
+            if ("gaze2d" in msg) {
+                txt += "gaze2d: " + g3_v2s(msg["gaze2d"], 3, 5) + "\n";
+                txt += "gaze3d: " + g3_v2s(msg["gaze3d"], 0, 5) + "\n";
+                txt += renderpupil(msg, "left");
+                txt += renderpupil(msg, "right");
+            }
+
+            gazedata.innerHTML = txt;
+        }
+
+        function renderpupil(msg, eye) {
+            var txt = eye + " pupil: ";
+            if ("pupildiameter" in msg["eye" + eye])
+                txt += msg["eye" + eye]["pupildiameter"].toFixed(2);
+            txt += "\n";
+            return txt;
+        }
+
+        function imu(ts, data, type) {
+            for (var unit in data) {
+                var id = "IMU" + unit;
+                var unitel = document.getElementById(id);
+                if (unitel == null) {
+                    var unitel = document.createElement("div");
+                    var hdr = document.createElement("h4");
+                    hdr.innerHTML = unit;
+                    unitel.append(hdr);
+                    unitel.id = id;
+
+                    unitel.append(document.createElement("pre"));
+                    imudata.append(unitel);
+                }
+                unitel.lastChild.innerHTML = "Time: " + ts.toFixed(3) + " (" + type + ")\n" + g3_v2s(data[unit], 3, 8)
+            }
+        }
+
+        function events(ts, data, type) {
+            const eventslog = document.getElementById("eventslog");
+            console.log(type, ts, data);
+            var tagname = data["tag"];
+            var obj = data["object"];
+
+            var ev = document.createElement("div");
+            var hdr = document.createElement("span");
+            var msg = document.createElement("pre");
+
+            ev.classList.add("logevent");
+            ev.append(hdr);
+            ev.append(msg);
+
+            hdr.innerHTML = "Time: " + ts.toFixed(3) + " " + type + " : ";
+            if (tagname == "WebUI") {
+                hdr.innerHTML += "<b>" + obj["client"] + "</b>";
+                msg.innerHTML = obj["text"];
+            } else {
+                hdr.innerHTML += data["tag"];
+                msg.innerHTML = JSON.stringify(data["object"]);
+            }
+            eventslog.append(ev);
+            while (eventslog.childNodes.length > 12)
+                eventslog.removeChild(eventslog.childNodes[0]);
+
+            eventslog.scrollTop = eventslog.scrollHeight;
+        }
+
+        function event_send(live) {
+            var msg = document.getElementById("eventmsg");
+            live.send_event("WebUI", {
+                client: live.remote.name(),
+                text: msg.value
+            });
+            msg.value = "";
+        }
+
+        class BurnInGaze {
+            constructor(root) {
+                this.settings = root.child("settings");
+                this.live = null;
+                this.gaze = null;
+                this.id = 0;
+
+            }
+
+            async update() {
+                var ovlset = await this.settings.get("gaze-overlay");
+                this.live.drawovl = this.gaze.value == "always" || (this.gaze.value == "default" && !ovlset);
+            }
+
+            set_live(live) {
+                this.live = live;
+                if (this.live) {
+                    this.settings.connect("changed", (name) => this.update())
+                        .then((id) => {
+                            this.id = id;
+                        });
+                    this.update();
+                    this.gaze = document.getElementById("gazeoverlay");
+
+                    this.gaze.addEventListener('change', (event) => {
+                        this.update();
+                    });
+                } else {
+                    this.settings.disconnect(this.id);
+                }
+
+            }
+        }
+
+        async function init_live() {
+            console.log("init live!!!!!");
+            let root = new G3Obj();
+            var live = null;
+            await root.open();
+            console.log("wait root open");
+            var localip = await root.call("remote-host", []);
+            var stunel = document.getElementById("stun");
+            stunel.value = window.location.host + ":3478";
+            var burnin = new BurnInGaze(root);
+
+            var play = document.getElementById("play");
+            play.onclick = async() => {
+                console.log("debug!!!!!");
+                play.disabled = true;
+                var eyes = document.getElementById("eyes");
+                if (live == null) {
+                    var useeyes = document.getElementById("useeyes").checked;
+                    var usestun = document.getElementById("usestun").checked;
+                    var uselocalip = document.getElementById("uselocalip").checked;
+                    var logdiv = document.getElementById("logdiv");
+
+                    logdiv.innerHTML = "";
+                    if (useeyes)
+                        eyes.classList.remove("hide");
+                    else
+                        eyes.classList.add("hide");
+                    var stunserver = null;
+                    if (usestun)
+                        stunserver = stunel.value;
+                    live = new WebRtc(
+                        document.getElementById("scene"),
+                        (useeyes ? eyes : null),
+                        document.getElementById("overlay"),
+                        (uselocalip ? localip : null),
+                        document.getElementById("logdiv"),
+                        stunserver
+                    );
+                    live.onrender = (ts) => {
+                        document.getElementById("mediainfo").innerHTML = ts.toFixed(3);
+                    };
+                    document.getElementById("eventsend").onclick = () => event_send(live);
+                    document.getElementById("eventmsg").onchange = () => event_send(live);
+                    await live.start(null, root.child("webrtc"));
+
+                    live.connect_channel("gaze", (ts, body, type) => gaze(ts, body, type));
+                    live.connect_channel("imu", (ts, body, type) => imu(ts, body, type));
+                    live.connect_channel("event", (ts, body, type) => events(ts, body, type));
+                    live.connect_channel("sync-port", (ts, body, type) => syncport(ts, body, type));
+
+                    burnin.set_live(live);
+                    play.innerHTML = ICON_STOP;
+                } else {
+                    eyes.classList.add("hide");
+                    burnin.set_live(null);
+                    await live.stop();
+                    live = null;
+                    play.innerHTML = ICON_PLAY;
+                }
+                play.disabled = false;
+            };
+            console.log("???");
+
+            var calib = document.getElementById("calib");
+            calib.onclick = async() => {
+                calib.innerHTML = ICON_CALIBRATE + ICON_WAIT;
+                var succ = await root.child("calibrate").call("run");
+                if (succ)
+                    calib.innerHTML = ICON_CALIBRATE + ICON_OK;
+                else
+                    calib.innerHTML = ICON_CALIBRATE + ICON_CANCEL;
+            };
+            /* Record handling */
+            // var recovl = document.getElementById("recovl");
+            // var recbtn = document.getElementById("recbtn");
+            // recbtn.onclick = async() => {
+            //     recbtn.disabled = true;
+            //     if (await recorder.is_recording())
+            //         await recorder.stop();
+            //     else
+            //         await recorder.start();
+            //     recbtn.disabled = false;
+            // };
+
+            // var recorder = new Recorder(root.child("recorder"), (time) => {
+            //     if (time < 0.0) {
+            //         recovl.classList.add("hide");
+            //         recbtn.classList.remove("recording");
+            //     } else {
+            //         recovl.classList.remove("hide");
+            //         recbtn.classList.add("recording");
+            //     }
+            //     recovl.innerHTML = g3_dur_to_time(time);
+            // });
+        }
+        init_live();
+
+        function fullscreen() {
+            var bin = document.getElementById("playbin");
+            if (!document.fullscreenElement)
+                bin.requestFullscreen();
+            else
+                document.exitFullscreen();
+        }
+    </script>
+</body>
+
+</html>

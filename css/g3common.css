@@ -1,0 +1,482 @@
+/* BASICS */
+
+html,
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: WhiteSmoke;
+    padding: 0px;
+    margin: 0px;
+}
+
+.hide {
+    display: none;
+}
+
+.right {
+    float: right;
+}
+
+
+/* MENU */
+
+div.menu {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+    overflow: auto;
+    background-color: SlateGray;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.menuactive {
+    background: Chocolate;
+}
+
+.menu a,
+.menu span {
+    float: left;
+    text-decoration: none;
+    padding: 12px 16px;
+    transition: 0.25s ease;
+    line-height: 100%;
+}
+
+.menu a {
+    float: left;
+    color: white;
+}
+
+.menu span {
+    float: right;
+}
+
+.menu a:hover:not(.menuactive) {
+    background-color: BurlyWood;
+    transition: 0.25s ease;
+}
+
+.menucom {
+    color: Chocolate;
+}
+
+
+/* POPUP */
+
+.popup {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 50vw;
+    height: 50vh;
+    padding: 25vh 25vw;
+}
+
+.popup .box {
+    text-align: center;
+    height: auto;
+}
+
+.popup .box .info {
+    height: auto;
+}
+
+
+/* CONTENT */
+
+div.content {
+    margin: 1% 2%;
+    animation: fadeIn ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 0.4s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+div.box {
+    border: 1px solid black;
+    background: White;
+    margin: 1% 0;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1%;
+}
+
+.log {
+    width: 100%;
+    border: 1px solid Silver;
+    height: 150px;
+    border-radius: 7px;
+    overflow: hidden scroll;
+}
+
+.logwithsend {
+    border-radius: 7px 0 0 0;
+    border-bottom: 0;
+}
+
+#eventmsg {
+    flex-grow: 1;
+    border-radius: 0 0 0 7px;
+    margin-right: 0;
+}
+
+#eventsend {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 110%;
+    border-left: 0;
+    border-radius: 0 0 7px 0;
+    /*    float: right;*/
+}
+
+.logevent {
+    margin: 1% 0.25%;
+}
+
+.info {
+    margin: 0.25% 0.5%;
+}
+
+h1 {
+    text-align: left;
+    padding: 0.5% 1%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: Gainsboro;
+    font-size: 20pt;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15pt;
+    width: 50%;
+    padding: 0.25% 0.5%;
+    margin: 0 0 0.25% 0;
+}
+
+h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    padding: 0;
+    margin: 0.5% 0;
+}
+
+h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: SlateGray;
+    padding: 0;
+    margin: 0.5% 0;
+}
+
+select {
+    -moz-appearance: button;
+    appearance: button;
+    border: 0;
+    padding: 3px 3px 3px 3px;
+    border-radius: 7px;
+    border: 1px solid Silver;
+    background: Gainsboro;
+    transition: 0.25s ease;
+}
+
+
+/*select:not([multiple]):hover {*/
+
+select:hover {
+    background: Chocolate;
+    transition: 0.25s ease;
+}
+
+select[multiple] option {
+    padding: 1px;
+    background: transparent;
+}
+
+select[multiple] option:checked {
+    border: 1px solid Chocolate;
+    background: red;
+    outline-color: red;
+}
+
+option {
+    background: Silver;
+}
+
+option:hover {
+    background-color: BurlyWood;
+}
+
+button {
+    outline: none;
+    line-height: 100%;
+    margin: 0 3px;
+    padding: 3px 7px;
+    border-radius: 7px;
+    border: 1px solid Silver;
+    background: Gainsboro;
+    transition: 0.25s ease;
+}
+
+button:hover,
+button.aslink:hover {
+    background: Chocolate;
+    transition: 0.25s ease;
+}
+
+button.aslink {
+    background: none;
+    text-align: left;
+    border-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+[type="checkbox"] {
+    display: none;
+}
+
+[type="checkbox"]+label:before {
+    border: 1px solid Silver;
+    padding: 0px 3px 0px 3px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: 0.25s ease;
+    user-select: none;
+}
+
+[type="checkbox"]+label:hover:before {
+    border: 1px solid Chocolate;
+    transition: 0.25s ease;
+}
+
+[type="checkbox"]:checked+label:before {
+    content: '\2713';
+    color: Chocolate;
+}
+
+[type="checkbox"]:hover:not(:checked)+label:before {
+    content: '\2713';
+    color: Silver;
+}
+
+[type="checkbox"]:not(:checked)+label:before {
+    content: '\2713';
+    color: white;
+}
+
+[type="checkbox"]:hover:disabled+label:before {
+    border: 1px solid Silver;
+    color: white;
+    transition: 0.25s ease;
+}
+
+input:disabled {
+    background: WhiteSmoke;
+    transition: 0.25s ease;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid Chocolate;
+    transition: 0.25s ease;
+}
+
+input {
+    border: 1px solid Silver;
+    padding: 3px 7px 3px 7px;
+    border-radius: 7px;
+    transition: 0.25s ease;
+}
+
+textarea {
+    border: 1px solid Silver;
+    padding: 3px 7px 3px 7px;
+    vertical-align: top;
+    border-radius: 7px;
+    transition: 0.25s ease;
+}
+
+textarea:disabled {
+    background: WhiteSmoke;
+    transition: 0.25s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border: 1px solid Chocolate;
+    transition: 0.25s ease;
+}
+
+img.g3 {
+    max-height: 80vh;
+    max-width: 80vw;
+}
+
+pre {
+    margin: 0;
+    padding: 0;
+}
+
+pre.fail {
+    color: FireBrick;
+}
+
+
+/* VIDEO */
+
+.header,
+.footer {
+    transition: .5s ease;
+    background: WhiteSmoke;
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    top: 0;
+}
+
+.footer {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    bottom: 0;
+}
+
+.footer button {
+    font-size: 150%;
+    margin-left: 12px;
+}
+
+.live {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    top: 3px;
+    right: 3%;
+    position: absolute;
+    z-index: 1;
+}
+
+video {
+    position: relative;
+    padding: 0px;
+    margin: 1px;
+    width: 95%;
+}
+
+table {
+    border: 1px solid green;
+    width: 100%;
+    table-layout: fixed;
+    margin: 0.25% 0.5%;
+    width: 99%;
+}
+
+th {
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15pt;
+    width: 50%;
+    padding: 0.25% 0.5%;
+    margin: 0 0 0.25% 0;
+}
+
+td {
+    vertical-align: top;
+}
+
+pre.monospaceblock {
+    display: inline-block;
+    padding: 3px;
+}
+
+
+/* Video stat */
+
+canvas {
+    border: 1px solid Silver;
+    width: 500px;
+    height: 200px;
+}
+
+.statdiv {
+    display: grid;
+    grid-template-columns: auto min-content;
+}
+
+
+/* INDEX */
+
+div.g3 {
+    text-align: center;
+}
+
+
+/* Recording */
+
+.recording {
+    color: red;
+    font-weight: bolder;
+    animation-name: Recording;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes Recording {
+    0% {
+        text-shadow: 0px 0px 0px red;
+    }
+    10% {
+        text-shadow: 0px 0px 12px red;
+    }
+    20% {
+        text-shadow: 0px 0px 0px red;
+    }
+}
+
+
+/* Sync port */
+
+.syncport {
+    border: 1px solid Silver;
+    font-family: monospace;
+    border-radius: 25%;
+    padding: 0 3px;
+}
+
+.syncon {
+    background: Chocolate;
+}
+
+.licenseagreement {
+    width: 90%;
+    height: 100vh;
+    margin: 12px;
+    overflow: hidden;
+}

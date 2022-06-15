@@ -3,8 +3,8 @@
 
 <head>
     <title>Read Easy!</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/g3common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <header>
@@ -13,11 +13,15 @@
         <img class="marker right" src="./resources/top_right.svg" />
     </li>
     <div class="navbar">
-        <span class="label">Material:</span> <input id="inputfile" type="file" name="inputfile" class="file">
-        <span class="label">Target Language:</span><select enabled id="TargetLanguage" class="classic">
-            <option>Japanese</option>
-            <option>Chinese</option>
-        </select>
+        <span class="label">文章(.txt):</span> 
+            <input id="inputfile" type="file" name="inputfile" class="file">
+        <span class="label">翻訳先言語:</span>
+            <select enabled id="TargetLanguage" class="classic">
+                <option>Japanese</option>
+                <option>Chinese</option>
+            </select>
+        <button class="classic">Calibration</button>
+        <button class="classic">Start Live</button>
     </div>
 
 </header>
@@ -26,12 +30,22 @@
     <div id="container" class="container">
         <div id="output" class="textarea"></div>
         <div id="word_info" class="widget"></div>
-        <div id="progress_bar" class="progress">
-        </div>
+        <div id="progress_bar" class="progress"></div>
     </div>
 
+    <video id="view" autoplay="true" style="display:none;"></video>
+    <canvas id="canvas" style="width:400px; height:300px;"></canvas>
+    <canvas id="outputCanvas" style="width:400px; height:300px;"></canvas>
+    <h1 id="debug">hello</h1>
+
+
+    <script src="https://docs.opencv.org/4.5.2/opencv.js"></script>
     <script type="text/javascript" src="js/importText.js"></script>
     <script src="js/g3common.js"></script>
+
+    <script src="js/cv.js"></script>
+    <script src="js/aruco.js"></script>
+    <script src="js/video_test.js"></script>
 
 </body>
 <footer>

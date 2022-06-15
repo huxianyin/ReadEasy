@@ -20,7 +20,7 @@ body {
 /* MENU */
 
 div.menu {
-    position: sticky;
+    position: fixed;
     z-index: 100;
     top: 0;
     width: 100%;

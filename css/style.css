@@ -8,22 +8,32 @@ body {
     padding: 0px;
 }
 
+
+#canvas{
+    margin-top: 20%;
+}
 textarea {
     height: 8rem !important;
 }
 
 header {
     background-color: #f2a640;
-    padding: 1rem 1rem;
     position: fixed;
     width: 100%;
-    height: 15%;
+    height: 100px;
     z-index: 1;
     align-items: center;
+    margin-top: 40px;
 }
 
 .navbar {
-    padding-top: 20px;
+    display: block;
+    padding-top: 1%;
+    padding-left: 10%;
+}
+
+.navbar.span{
+    color: #f2a640;
 }
 
 footer {
@@ -33,7 +43,7 @@ footer {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 120px;
+    height: 100px;
 }
 
 .marker {

@@ -275,28 +275,7 @@
                 else
                     calib.innerHTML = ICON_CALIBRATE + ICON_CANCEL;
             };
-            /* Record handling */
-            // var recovl = document.getElementById("recovl");
-            // var recbtn = document.getElementById("recbtn");
-            // recbtn.onclick = async() => {
-            //     recbtn.disabled = true;
-            //     if (await recorder.is_recording())
-            //         await recorder.stop();
-            //     else
-            //         await recorder.start();
-            //     recbtn.disabled = false;
-            // };
-
-            // var recorder = new Recorder(root.child("recorder"), (time) => {
-            //     if (time < 0.0) {
-            //         recovl.classList.add("hide");
-            //         recbtn.classList.remove("recording");
-            //     } else {
-            //         recovl.classList.remove("hide");
-            //         recbtn.classList.add("recording");
-            //     }
-            //     recovl.innerHTML = g3_dur_to_time(time);
-            // });
+            
         }
         init_live();
 

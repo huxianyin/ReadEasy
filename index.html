@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
     <title>Read Easy!</title>
     <link rel="stylesheet" href="css/g3common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -13,17 +14,23 @@
         <img class="marker right" src="./resources/top_right.svg" />
     </li>
     <div class="navbar">
-        <span class="label">文章(.txt):</span> 
-            <input id="inputfile" type="file" name="inputfile" class="file">
+        <span class="label">文章(.txt):</span>
+        <input id="inputfile" type="file" name="inputfile" class="file">
         <span class="label">翻訳先言語:</span>
-            <select enabled id="TargetLanguage" class="classic">
+        <select enabled id="TargetLanguage" class="classic">
                 <option>Japanese</option>
                 <option>Chinese</option>
-            </select>
-        <button class="classic">Calibration</button>
-        <button class="classic">Start Live</button>
-    </div>
+        </select>
 
+        <select name="gazeoverlay" id="gazeoverlay">
+            <option value="always">Always</option>
+            <option value="default">Default</option>
+            <option value="never" selected>Never</option>
+        </select>
+        <button title="Start/Stop Live" id="play">&#9654;</button>
+        <button title="Calibrate" id="calib">&#8857;</button>
+
+    </div>
 </header>
 
 <body>
@@ -33,19 +40,21 @@
         <div id="progress_bar" class="progress"></div>
     </div>
 
-    <video id="view" autoplay="true" style="display:none;"></video>
-    <canvas id="canvas" style="width:400px; height:300px;"></canvas>
-    <canvas id="outputCanvas" style="width:400px; height:300px;"></canvas>
-    <h1 id="debug">hello</h1>
-
+    <video id="scene" display="none" width="1920px" height="1080px"></video>
+    <canvas id="canvas" display="none" width="1920px" height="1080px"></canvas>
+    <canvas id="outputCanvas"></canvas>
+    <img id="overlay" title="Gaze" src="resources/marker.png">
 
     <script src="https://docs.opencv.org/4.5.2/opencv.js"></script>
     <script type="text/javascript" src="js/importText.js"></script>
     <script src="js/g3common.js"></script>
+    <script src="js/g3obj.js"></script>
+    <script src="js/webrtc.js"></script>
 
     <script src="js/cv.js"></script>
     <script src="js/aruco.js"></script>
     <script src="js/video_test.js"></script>
+    <script src="js/live.js"></script>
 
 </body>
 <footer>

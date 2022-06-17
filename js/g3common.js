@@ -50,7 +50,7 @@ function common_menu() {
     document.body.prepend(menu);
 }
 
-common_menu();
+//common_menu();
 
 function g3_dur_to_time(dur, dig = 0) {
     if (dur < 0)

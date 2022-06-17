@@ -80,9 +80,11 @@
             <div id="logdiv"></div>
         </div>
     </div>
+
     <script src="js/g3common.js"></script>
     <script src="js/g3obj.js"></script>
     <script src="js/webrtc.js"></script>
+
     <script>
         function syncport(ts, msg) {
             var el = (msg.direction == "out") ? syncout : syncin;
@@ -102,7 +104,8 @@
                 txt += renderpupil(msg, "right");
             }
 
-            gazedata.innerHTML = txt;
+            //gazedata.innerHTML = txt;
+            console.log(txt);
         }
 
         function renderpupil(msg, eye) {
@@ -204,7 +207,6 @@
         }
 
         async function init_live() {
-            console.log("init live!!!!!");
             let root = new G3Obj();
             var live = null;
             await root.open();
@@ -275,7 +277,7 @@
                 else
                     calib.innerHTML = ICON_CALIBRATE + ICON_CANCEL;
             };
-            
+
         }
         init_live();
 

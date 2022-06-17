@@ -1,4 +1,8 @@
 @charset "utf-8";
+:root {
+    --mark_size: 220px;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -8,10 +12,15 @@ body {
     padding: 0px;
 }
 
-
-#canvas{
-    margin-top: 20%;
+video {
+    width: 0px;
+    height: 0px;
 }
+
+canvas {
+    margin-top: 600px;
+}
+
 textarea {
     height: 8rem !important;
 }
@@ -20,19 +29,18 @@ header {
     background-color: #f2a640;
     position: fixed;
     width: 100%;
-    height: 100px;
+    height: var(--mark_size);
     z-index: 1;
     align-items: center;
-    margin-top: 40px;
 }
 
 .navbar {
     display: block;
     padding-top: 1%;
-    padding-left: 10%;
+    padding-left: calc(var(--mark_size) + 50px);
 }
 
-.navbar.span{
+.navbar.span {
     color: #f2a640;
 }
 
@@ -43,12 +51,12 @@ footer {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100px;
+    height: var(--mark_size);
 }
 
 .marker {
-    width: 100px;
-    height: 100px;
+    width: var(--mark_size);
+    height: var(--mark_size);
     position: absolute;
     top: 0vh;
 }
@@ -60,7 +68,7 @@ footer {
 
 .marker.right {
     top: auto;
-    left: calc(100vw - 110px);
+    left: calc(100vw - 10px - var(--mark_size));
 }
 
 .container {
@@ -72,7 +80,7 @@ footer {
 .textarea {
     position: absolute;
     top: 180px;
-    font-size: 25px;
+    font-size: 35px;
     padding-bottom: 100px;
 }
 
